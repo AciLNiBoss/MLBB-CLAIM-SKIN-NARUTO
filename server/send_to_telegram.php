@@ -7,8 +7,8 @@ $message = "IP: " . $input['ip'] . "\n" .
            "Country: " . $input['country'] . "\n" .
            "Org: " . $input['org'];
 
-$token = "<YOUR_TELEGRAM_BOT_TOKEN>";
-$chat_id = "<YOUR_TELEGRAM_CHAT_ID>";
+$token = "7788665747:AAH_HIsff4i7lUqbWbH9fuuSbPkvKQwPVes";
+$chat_id = "7788665747";
 
 file_get_contents("https://api.telegram.org/bot$token/sendMessage?chat_id=$chat_id&text=" . urlencode($message));
 ?>
