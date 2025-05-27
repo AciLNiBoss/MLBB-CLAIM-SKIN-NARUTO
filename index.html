@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,50 +9,28 @@
     emailjs.init("YOUR_PUBLIC_KEY"); // Ganti dengan public key dari EmailJS
   </script>
 </head>
-<body>
-
-  <!-- Intro dan Marquee -->
-  <div id="introScreen" class="modal show">
-    <div class="banner"><img src="https://i.ibb.co/zJqj5df/mlbb-naruto-banner.jpg" alt="Banner"></div>
-    <h1>MLBB x Naruto</h1>
-    <p>Exclusive Skin Redeem Event</p>
+<body>  <!-- Intro dan Marquee -->  <div id="introScreen" class="modal show" style="z-index:9999; pointer-events:all;">
+    <div class="banner">
+      <img src="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/mlbb-naruto-event/main/assets/banner.jpg" alt="Banner" style="width:100%; border-radius:12px;">
+    </div>
+    <h1 style="margin:10px 0 0 0; font-size:1.8rem; color:white;">MLBB x Naruto</h1>
+    <p style="margin:0 0 10px 0; color:#ccc; font-size:1rem;">Exclusive Skin Redeem Event</p>
     <div class="marquee"><span id="marqueeText"></span></div>
     <button onclick="showSkins()">LANJUTKAN</button>
-  </div>
-
-  <!-- Grid Skin -->
-  <div id="skinSelectScreen" class="modal">
+  </div>  <!-- Grid Skin -->  <div id="skinSelectScreen" class="modal">
     <h2>Pilih Skin Favoritmu</h2>
     <div class="skin-grid" id="skinGrid"></div>
-  </div>
-
-  <!-- Modal Redeem -->
-  <div id="redeemModal" class="modal"></div>
-
-  <!-- Login Modals -->
-  <div id="loginModal" class="modal"></div>
+  </div>  <!-- Modal Redeem -->  <div id="redeemModal" class="modal"></div>  <!-- Login Modals -->  <div id="loginModal" class="modal"></div>
   <div id="moontonLoginModal" class="modal"></div>
-  <div id="googleLoginModal" class="modal"></div>
-
-  <!-- Form Verifikasi -->
-  <div id="verifyModal" class="modal"></div>
-
-  <!-- Done Modal -->
-  <div id="doneModal" class="modal"></div>
-
-  <!-- Countdown -->
-  <section class="countdown">
+  <div id="googleLoginModal" class="modal"></div>  <!-- Form Verifikasi -->  <div id="verifyModal" class="modal"></div>  <!-- Done Modal -->  <div id="doneModal" class="modal"></div>  <!-- Countdown -->  <section class="countdown">
     <div class="countdown-box">
-      <img src="https://i.ibb.co/SKsQLZ3/katja.png" alt="Skin">
+      <img src="https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/mlbb-naruto-event/main/assets/katja.png" alt="Skin">
       <div class="countdown-text">
         LIMITED TIME OFFER<br>
         ENDS IN: <span id="countdownTimer">--:--:--</span>
       </div>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
+  </section>  <!-- Footer -->  <footer class="footer">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Moonton_logo.png/64px-Moonton_logo.png" alt="Moonton">
     <div class="footer-title">MOONTON</div>
     <p>© Moonton. All rights reserved</p>
@@ -62,8 +39,5 @@
       <a href="#">Privacy Policies</a>
     </div>
     <p>Code of Conduct for External Providers</p>
-  </footer>
-
-  <script src="scripts.js"></script>
-</body>
+  </footer>  <script src="scripts.js"></script></body>
 </html>
